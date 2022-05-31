@@ -7,7 +7,7 @@ const siteController = require( '../controllers/siteController' );
 
 module.exports = () => {
     router.get( '/', siteController.home ); 
-    router.get( '/nosotros', siteController.us );
+    router.get( '/about-us', siteController.us );
 
     return router;
 }

@@ -1,7 +1,7 @@
 exports.home = ( request, response ) => {
-    response.send( 'Home' );
+    response.render( 'index' );
 }
 
 exports.us = ( request, response ) => {
-    response.send( 'Nosotros' );
+    response.render( 'about-us' );
 };
