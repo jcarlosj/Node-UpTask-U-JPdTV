@@ -5,7 +5,11 @@ block main_content
     .contenido-principal
         h1 #{ name_page }
 
-        form.agregar-proyecto 
+        if errors
+            each error in errors
+                .alerta=error.nombre
+
+        form.agregar-proyecto( action="/new-project" method="post" ) 
             .campo
                 label( for="nombre" ) Nombre proyecto:
                 input( type="text" id="nombre" name="nombre" placeholder="Nombre del proyecto" )

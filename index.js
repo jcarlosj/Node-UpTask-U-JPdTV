@@ -4,6 +4,9 @@ const
     path = require( 'path' ),
     routes = require( './routes' );
 
+app.use( express.json() );                                  //  Habilita lectura datos tipo JSON
+app.use( express.urlencoded({ extended: true } ) );
+
 app.use( express.static( 'public' ) );                      //  Establece ruta de archivos estaticos
 app.set( 'view engine', 'pug' );                            //  Habilita pug
 app.set( 'views',

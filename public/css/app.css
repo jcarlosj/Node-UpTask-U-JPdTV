@@ -156,6 +156,7 @@ body.index {
 }
 .crear-proyecto a {
     color: #105372;
+    font-size: 14px;
 }
 
 .lista-proyectos ul{
@@ -236,6 +237,8 @@ body.index {
     color: #00B762;
 }
 .alerta {
+    background-color: #dd7373;
+    color: white;
     padding: .5rem;
     text-align: center;
     font-size: .9rem;

@@ -8,7 +8,8 @@ const siteController = require( '../controllers/siteController' );
 module.exports = () => {
     router.get( '/', siteController.home ); 
     router.get( '/about-us', siteController.us );
-    router.get( '/new-project', siteController.newProject );
+    router.get( '/new-project', siteController.formNewProject );
+    router.post( '/new-project', siteController.addNewProject );
 
     return router;
 }
