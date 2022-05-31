@@ -3,13 +3,11 @@ const express = require( 'express' );
 
 const router = express.Router();
 
+const siteController = require( '../controllers/siteController' );
+
 module.exports = () => {
-    router.get( '/', ( request, response ) => {
-        response.send( 'Home' );
-    }); 
-    router.get( '/nosotros', ( request, response ) => {
-        response.send( 'Nosotros' );
-    });
+    router.get( '/', siteController.home ); 
+    router.get( '/nosotros', siteController.us );
 
     return router;
 }
