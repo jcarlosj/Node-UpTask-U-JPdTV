@@ -1,10 +1,9 @@
-const express = require('express');
-
-const app = express();
+const
+    express = require('express'),
+    app = express(),
+    routes = require( './routes' );
 
 // * Define ruta para el home
-app.use( '/', ( request, response ) => {
-    response.send( 'UpTask' );
-}); 
+app.use( '/', routes() ); 
 
 app.listen( 4000 );
