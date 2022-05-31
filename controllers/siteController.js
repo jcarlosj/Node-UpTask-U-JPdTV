@@ -1,5 +1,7 @@
 exports.home = ( request, response ) => {
-    response.render( 'index' );
+    response.render( 'index', { 
+        name_page: 'Proyectos' 
+    } );
 }
 
 exports.us = ( request, response ) => {

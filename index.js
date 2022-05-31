@@ -4,6 +4,7 @@ const
     path = require( 'path' ),
     routes = require( './routes' );
 
+app.use( express.static( 'public' ) );                      //  Establece ruta de archivos estaticos
 app.set( 'view engine', 'pug' );                            //  Habilita pug
 app.set( 'views', path.join( __dirname, './views' ) );      //  Establece ruta de las vistas
 
