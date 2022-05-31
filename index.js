@@ -2,7 +2,13 @@ const
     express = require('express'),
     app = express(),
     path = require( 'path' ),
-    routes = require( './routes' );
+    routes = require( './routes' ),
+    db = require( './config/sequelize' );
+
+// * Implementa conexion de MySQL usando Sequelize
+db.authenticate()
+    .then( () => console.log( 'Sequelize connected to MySQL' ) )
+    .catch( ( error ) => console.error( error ) );
 
 app.use( express.json() );                                  //  Habilita lectura datos tipo JSON
 app.use( express.urlencoded({ extended: true } ) );
