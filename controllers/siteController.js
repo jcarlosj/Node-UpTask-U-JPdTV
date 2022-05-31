@@ -5,5 +5,13 @@ exports.home = ( request, response ) => {
 }
 
 exports.us = ( request, response ) => {
-    response.render( 'about-us' );
+    response.render( 'about-us', {
+        name_page: 'Nosotros'
+    } );
 };
+
+exports.newProject = ( request, response ) => {
+    response.render( 'forms/new-project', {
+        name_page: 'Nuevo proyecto'
+    } );
+}
