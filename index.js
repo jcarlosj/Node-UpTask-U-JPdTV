@@ -5,8 +5,10 @@ const
     routes = require( './routes' ),
     db = require( './config/sequelize' );
 
+require( './models/Projects' );
+
 // * Implementa conexion de MySQL usando Sequelize
-db.authenticate()
+db.sync()
     .then( () => console.log( 'Sequelize connected to MySQL' ) )
     .catch( ( error ) => console.error( error ) );
 
