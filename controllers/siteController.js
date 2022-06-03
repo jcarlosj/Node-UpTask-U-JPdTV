@@ -28,7 +28,7 @@ exports.addNewProject = async ( request, response ) => {
     console.log( request.body );
 
     const { body: { project_name } } = request;
-    console.log( project_name );
+    const projects = await Projects.findAll();
     let errors = [];
 
     if( ! project_name )
@@ -37,7 +37,8 @@ exports.addNewProject = async ( request, response ) => {
     if( errors.length > 0 ) {
         response.render( 'forms/new-project', {
             name_page: 'Nuevo proyecto',
-            errors
+            errors,
+            projects
         } );
 
         return;
@@ -54,6 +55,8 @@ exports.addNewProject = async ( request, response ) => {
 }
 
 exports.bySlug = async ( request, response, next ) => {
+    const projects = await Projects.findAll();
+
     const project = await Projects.findOne({
         where: { 
             url: request.params.slug 
@@ -63,6 +66,9 @@ exports.bySlug = async ( request, response, next ) => {
     if( ! project )
         return next();
 
-    console.log( 'Project: ' + project );
-    response.send( project );
+    response.render( 'tasks', {
+        name_page: 'Tareas del proyecto',
+        project,
+        projects
+    });
 }
