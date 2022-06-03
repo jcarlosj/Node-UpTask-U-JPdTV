@@ -19,8 +19,7 @@ app.use( express.urlencoded({ extended: true } ) );
 app.use( express.static( 'public' ) );                      //  Establece ruta de archivos estaticos
 app.set( 'view engine', 'pug' );                            //  Habilita pug
 app.set( 'views',
-    path.join( __dirname, './views' ),                      //  Establece ruta de las vistas
-    path.join( __dirname, './views/forms' )                 //  Establece ruta de vistas de formularios
+    path.join( __dirname, './views' )                      //  Establece ruta de las vistas
 );
 app.use( ( request, response, next ) => {
     response.locals.vardump = vardump;                      //  Establece la funcion vardump del helper como una funcionlidad disponible para toda la aplicacion

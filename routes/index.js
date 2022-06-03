@@ -9,9 +9,9 @@ const siteController = require( '../controllers/siteController' );
 module.exports = () => {
     router.get( '/', siteController.home ); 
     router.get( '/about-us', siteController.us );
-    router.get( '/new-project', siteController.formNewProject );
+    router.get( '/project/new', siteController.formNewProject );
     router.post( 
-        '/new-project', 
+        '/project/new', 
         body( 'project_name' ).not().isEmpty().trim().escape(),
         siteController.addNewProject 
     );

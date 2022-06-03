@@ -18,7 +18,7 @@ exports.us = ( request, response ) => {
 exports.formNewProject = async ( request, response ) => {
     const projects = await Projects.findAll();
 
-    response.render( 'forms/new-project', {
+    response.render( 'projects/page-project', {
         name_page: 'Nuevo proyecto',
         projects
     } );
@@ -35,7 +35,7 @@ exports.addNewProject = async ( request, response ) => {
         errors.push({ 'nombre': 'Nombre del proyecto obligatorio.' });
 
     if( errors.length > 0 ) {
-        response.render( 'forms/new-project', {
+        response.render( 'projects/page-project', {
             name_page: 'Nuevo proyecto',
             errors,
             projects
@@ -57,13 +57,20 @@ exports.addNewProject = async ( request, response ) => {
 exports.bySlug = async ( request, response, next ) => {
     const promiseProjects = Projects.findAll();
 
-    const promiseProject = await Projects.findOne({
+    const promiseProject = Projects.findOne({
         where: {
             url: request.params.slug
         }
     });
 
-    const [ projects, project ] = await Promise.all([ promiseProjects, promiseProject ]);
+    const
+        [ objProjects, objProject ] = await Promise.all([ promiseProjects, promiseProject ]),
+        { dataValues: project } = objProject,
+        projects = objProjects.map( project => {
+            return project.dataValues
+        });
+
+    console.log( '>>>', projects );
 
     if( ! project )
         return next();
@@ -78,17 +85,24 @@ exports.bySlug = async ( request, response, next ) => {
 exports.formEditProject = async ( request, response ) => {
     const promiseProjects = Projects.findAll();
 
-    const promiseProject = await Projects.findOne({
+    const promiseProject = Projects.findOne({
         where: {
             id: request.params.projectId
         }
     });
 
-    const [ projects, project ] = await Promise.all([ promiseProjects, promiseProject ]);
+    const
+        [ objProjects, objProject ] = await Promise.all([ promiseProjects, promiseProject ]),
+        { dataValues: project } = objProject,
+        projects = objProjects.map( project => {
+            return project.dataValues
+        });
 
-    response.render( 'forms/new-project', {
+console.log( '>>>', projects );
+
+    response.render( 'projects/page-project', {
         name_page: 'Editar proyecto',
-        project,
+        project, 
         projects
     } );
 }
