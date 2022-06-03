@@ -1,3 +1,5 @@
+const Projects = require( '../models/Projects' );
+
 exports.home = ( request, response ) => {
     response.render( 'index', { 
         name_page: 'Proyectos' 
@@ -32,4 +34,10 @@ exports.addNewProject = ( request, response ) => {
             errors
         } );
 
+    // * Query Sequelize: Insertar nombre proyecto
+    Projects.create({ name: nombre })
+        .then( () => console.log( 'Project inserted correctly!' ) )
+        .catch( err => console.error( err ) );
+
+    response.redirect( '/' );
 }
