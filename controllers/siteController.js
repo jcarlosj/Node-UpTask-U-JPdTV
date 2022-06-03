@@ -1,8 +1,11 @@
 const Projects = require( '../models/Projects' );
 
-exports.home = ( request, response ) => {
+exports.home = async ( request, response ) => {
+    const projects = await Projects.findAll();
+
     response.render( 'index', { 
-        name_page: 'Proyectos' 
+        name_page: 'Proyectos',
+        projects
     } );
 }
 
@@ -12,9 +15,12 @@ exports.us = ( request, response ) => {
     } );
 };
 
-exports.formNewProject = ( request, response ) => {
+exports.formNewProject = async ( request, response ) => {
+    const projects = await Projects.findAll();
+
     response.render( 'forms/new-project', {
-        name_page: 'Nuevo proyecto'
+        name_page: 'Nuevo proyecto',
+        projects
     } );
 }
 
