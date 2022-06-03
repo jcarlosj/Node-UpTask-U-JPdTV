@@ -31,6 +31,7 @@ const Project = db.define( 'Projects', {
                 
                 dataValues[ 'url' ] = `${ url }-${ shortid.generate() }`;
             }
+            // NOTA: Se podria usar beforeUpdate() para actualizar la URL, sin embargo no es una practica recomendada en SEM, SEO
         }
     });
     

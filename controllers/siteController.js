@@ -106,3 +106,41 @@ console.log( '>>>', projects );
         projects
     } );
 }
+
+exports.updateProject = async ( request, response ) => {
+    console.log( request.body );
+
+    const { body: { project_name } } = request;
+    const projects = await Projects.findAll();
+    let errors = [];
+
+    if( ! project_name )
+        errors.push({ 'nombre': 'Nombre del proyecto obligatorio.' });
+
+    if( errors.length > 0 ) {
+        response.render( 'projects/page-project', {
+            name_page: 'Nuevo proyecto',
+            errors,
+            projects
+        } );
+
+        return;
+    }
+
+    // * Query Sequelize: Actualizar nombre proyecto
+    const data = await Projects.update(
+        { name: project_name },
+        { 
+            where: {
+                id: request.params.projectId
+            }
+        }
+    );        
+
+    if( data )
+        console.log( 'Project updated successfully!' );
+    else
+        console.log( 'Failed to update project!' );
+
+    response.redirect( '/' );
+}
