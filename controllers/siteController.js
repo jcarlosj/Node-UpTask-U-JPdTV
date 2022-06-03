@@ -1,4 +1,5 @@
 const Projects = require( '../models/Projects' );
+const slug = require( 'slug' );
 
 exports.home = ( request, response ) => {
     response.render( 'index', { 
@@ -37,8 +38,8 @@ exports.addNewProject = async ( request, response ) => {
         return;
     }
 
-    // * Query Sequelize: Insertar nombre proyecto
-    const data = await Projects.create({ name: project_name });
+    const url = slug( project_name ).toLowerCase();
+    const data = await Projects.create({ name: project_name, url });        // * Query Sequelize: Insertar nombre proyecto
 
     if( data )
         console.log( 'Project inserted successfully!' );
