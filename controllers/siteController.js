@@ -55,13 +55,15 @@ exports.addNewProject = async ( request, response ) => {
 }
 
 exports.bySlug = async ( request, response, next ) => {
-    const projects = await Projects.findAll();
+    const promiseProjects = Projects.findAll();
 
-    const project = await Projects.findOne({
-        where: { 
-            url: request.params.slug 
+    const promiseProject = await Projects.findOne({
+        where: {
+            url: request.params.slug
         }
     });
+
+    const [ projects, project ] = await Promise.all([ promiseProjects, promiseProject ]);
 
     if( ! project )
         return next();
@@ -74,10 +76,19 @@ exports.bySlug = async ( request, response, next ) => {
 }
 
 exports.formEditProject = async ( request, response ) => {
-    const projects = await Projects.findAll();
+    const promiseProjects = Projects.findAll();
+
+    const promiseProject = await Projects.findOne({
+        where: {
+            id: request.params.projectId
+        }
+    });
+
+    const [ projects, project ] = await Promise.all([ promiseProjects, promiseProject ]);
 
     response.render( 'forms/new-project', {
         name_page: 'Editar proyecto',
+        project,
         projects
     } );
 }
