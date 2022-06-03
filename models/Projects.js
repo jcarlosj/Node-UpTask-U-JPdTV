@@ -1,5 +1,6 @@
 const { DataTypes } = require( 'sequelize' );
 const slug = require( 'slug' );
+const shortid = require( 'shortid' );
 
 const db = require( '../config/sequelize' );
 
@@ -28,7 +29,7 @@ const Project = db.define( 'Projects', {
 
                 const url = slug( name ).toLowerCase();         // * Genera slug (url)
                 
-                dataValues[ 'url' ] = url;
+                dataValues[ 'url' ] = `${ url }-${ shortid.generate() }`;
             }
         }
     });
