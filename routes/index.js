@@ -1,5 +1,6 @@
 const { response } = require('express');
 const express = require( 'express' );
+const { body } = require( 'express-validator' );
 
 const router = express.Router();
 
@@ -9,7 +10,11 @@ module.exports = () => {
     router.get( '/', siteController.home ); 
     router.get( '/about-us', siteController.us );
     router.get( '/new-project', siteController.formNewProject );
-    router.post( '/new-project', siteController.addNewProject );
+    router.post( 
+        '/new-project', 
+        body( 'project_name' ).not().isEmpty().trim().escape(),
+        siteController.addNewProject 
+    );
 
     return router;
 }

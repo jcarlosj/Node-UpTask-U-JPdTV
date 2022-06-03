@@ -21,21 +21,24 @@ exports.formNewProject = ( request, response ) => {
 exports.addNewProject = async ( request, response ) => {
     console.log( request.body );
 
-    const { body: { nombre } } = request;
-    console.log( nombre );
+    const { body: { project_name } } = request;
+    console.log( project_name );
     let errors = [];
 
-    if( ! nombre )
+    if( ! project_name )
         errors.push({ 'nombre': 'Nombre del proyecto obligatorio.' });
 
-    if( errors.length > 0 )
+    if( errors.length > 0 ) {
         response.render( 'forms/new-project', {
             name_page: 'Nuevo proyecto',
             errors
         } );
 
+        return;
+    }
+
     // * Query Sequelize: Insertar nombre proyecto
-    const data = await Projects.create({ name: nombre });
+    const data = await Projects.create({ name: project_name });
 
     if( data )
         console.log( 'Project inserted successfully!' );
