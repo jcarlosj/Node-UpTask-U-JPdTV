@@ -18,7 +18,7 @@ exports.formNewProject = ( request, response ) => {
     } );
 }
 
-exports.addNewProject = ( request, response ) => {
+exports.addNewProject = async ( request, response ) => {
     console.log( request.body );
 
     const { body: { nombre } } = request;
@@ -35,9 +35,12 @@ exports.addNewProject = ( request, response ) => {
         } );
 
     // * Query Sequelize: Insertar nombre proyecto
-    Projects.create({ name: nombre })
-        .then( () => console.log( 'Project inserted correctly!' ) )
-        .catch( err => console.error( err ) );
+    const data = await Projects.create({ name: nombre });
+
+    if( data )
+        console.log( 'Project inserted successfully!' );
+    else
+        console.log( 'Project registration failed!' );
 
     response.redirect( '/' );
 }
