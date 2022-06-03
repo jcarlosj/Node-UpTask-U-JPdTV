@@ -3,5 +3,10 @@ extends layout
 
 block main_content
     .contenido-principal
-        h1=name_page
+        hgroup 
+            h1=project.name
+            h3 (#{ name_page })
         pre #{ vardump( project ) }
+        .contenedor-acciones
+            a(href=`/project/edit/${ project.id }` class="boton") Editar proyecto
+            button#eliminar-proyecto(type="button" class="boton eliminar") Eliminar proyecto

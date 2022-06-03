@@ -181,7 +181,8 @@ body.index {
     overflow: scroll;
 }
 .contenido-principal h1,
-.contenido-principal h2 {
+.contenido-principal h2,
+.contenido-principal h3 {
     text-align: center;
 }
 .contenido-principal h1 {

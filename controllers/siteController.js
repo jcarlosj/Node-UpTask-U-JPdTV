@@ -72,3 +72,12 @@ exports.bySlug = async ( request, response, next ) => {
         projects
     });
 }
+
+exports.formEditProject = async ( request, response ) => {
+    const projects = await Projects.findAll();
+
+    response.render( 'forms/new-project', {
+        name_page: 'Editar proyecto',
+        projects
+    } );
+}

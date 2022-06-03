@@ -15,7 +15,8 @@ module.exports = () => {
         body( 'project_name' ).not().isEmpty().trim().escape(),
         siteController.addNewProject 
     );
-    router.get( '/projects/:slug', siteController.bySlug )
+    router.get( '/projects/:slug', siteController.bySlug );
+    router.get( '/project/edit/:projectId', siteController.formEditProject );
 
     return router;
 }
