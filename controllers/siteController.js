@@ -52,3 +52,17 @@ exports.addNewProject = async ( request, response ) => {
 
     response.redirect( '/' );
 }
+
+exports.bySlug = async ( request, response, next ) => {
+    const project = await Projects.findOne({
+        where: { 
+            url: request.params.slug 
+        }
+    });
+
+    if( ! project )
+        return next();
+
+    console.log( 'Project: ' + project );
+    response.send( project );
+}

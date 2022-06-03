@@ -23,6 +23,6 @@ html(lang="en")
                         if ( projects.length )
                             each project in projects
                                 li
-                                    a(href="#") #{ project.name }
+                                    a(href=`projects/${ project.url }`) #{ project.name }
             block main_content
             pre #{ vardump( projects ) }

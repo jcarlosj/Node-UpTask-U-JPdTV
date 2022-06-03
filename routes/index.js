@@ -15,6 +15,7 @@ module.exports = () => {
         body( 'project_name' ).not().isEmpty().trim().escape(),
         siteController.addNewProject 
     );
+    router.get( '/projects/:slug', siteController.bySlug )
 
     return router;
 }
