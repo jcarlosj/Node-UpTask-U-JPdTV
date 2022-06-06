@@ -2,11 +2,11 @@ const
     express = require('express'),
     app = express(),
     path = require( 'path' ),
-    routes = require( './routes' ),
-    db = require( './config/sequelize' ),
-    { vardump } = require( './helpers' );
+    routes = require( './src/routes' ),
+    db = require( './src/config/sequelize' ),
+    { vardump } = require( './src/helpers' );
 
-require( './models/Projects' );
+require( './src/models/Projects' );
 
 // * Implementa conexion de MySQL usando Sequelize
 db.sync()
@@ -19,7 +19,7 @@ app.use( express.urlencoded({ extended: true } ) );
 app.use( express.static( 'public' ) );                      //  Establece ruta de archivos estaticos
 app.set( 'view engine', 'pug' );                            //  Habilita pug
 app.set( 'views',
-    path.join( __dirname, './views' )                      //  Establece ruta de las vistas
+    path.join( __dirname, './src/views' )                   //  Establece ruta de las vistas
 );
 app.use( ( request, response, next ) => {
     response.locals.vardump = vardump;                      //  Establece la funcion vardump del helper como una funcionlidad disponible para toda la aplicacion
