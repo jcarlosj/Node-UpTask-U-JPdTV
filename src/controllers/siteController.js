@@ -157,9 +157,11 @@ exports.deleteProject = async ( request, response, next ) => {
             where: {
                 url: project_url
             }
-         });
+        });
 
-    console.log( 'data' );
+    // * Valida si la accion se realizó
+    if( ! data )
+        return next();
 
     response.status( 200 ).send( 'Proyecto eliminado exitosamente!' );
 }

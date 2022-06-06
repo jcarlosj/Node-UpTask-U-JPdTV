@@ -38,7 +38,15 @@ if( btnDeleteProject ) {
                             window.location.href = '/';     // Redirecciona
                         }, 3000 );
 
-                    } );
+                    })
+                    .catch( err => {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'No se pudo eliminar el proyecto!',
+                            icon: 'error',
+                            confirmButtonText: 'Cool'
+                        })
+                    });
             }
         });
     });
