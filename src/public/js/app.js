@@ -1,1 +1,1 @@
-import task from './modules/projects';          // Gracias a Babel podemos usar la sintaxis de ES6 para importar en Node
+import projects from './modules/projects';          // Gracias a Babel podemos usar la sintaxis de ES6 para importar en Node

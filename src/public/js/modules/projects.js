@@ -4,8 +4,10 @@ import axios from 'axios';
 const btnDeleteProject = document.getElementById( 'eliminar-proyecto' );
 
 if( btnDeleteProject ) {
-    btnDeleteProject.addEventListener( 'click', () => {
-        console.log( 'Elimina proyecto' );
+    btnDeleteProject.addEventListener( 'click', event => {
+        const project_url = event.target.dataset.projectUrl;
+
+        console.log( project_url );
 
         Swal.fire({
             title: '¿Deseas eliminar este proyecto?',
@@ -19,6 +21,10 @@ if( btnDeleteProject ) {
         })
         .then( ( result ) => {
             if ( result.isConfirmed ) {
+                const url = `${ location.origin }/projects/${ project_url }`;
+
+                console.log( url );
+
                 Swal.fire(
                     'Eliminado!',
                     'Tú proyecto se ha eliminado.',
@@ -32,3 +38,5 @@ if( btnDeleteProject ) {
         });
     });
 }
+
+export default btnDeleteProject;
