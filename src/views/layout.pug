@@ -27,3 +27,4 @@ html(lang="en")
                                     a(href=`/projects/${ project.url }`) #{ project.name }
             block main_content
             //- pre #{ vardump( projects ) }
+        script( src="/dist/bundle.js" )

@@ -16,7 +16,7 @@ db.sync()
 app.use( express.json() );                                  //  Habilita lectura datos tipo JSON
 app.use( express.urlencoded({ extended: true } ) );
 
-app.use( express.static( 'public' ) );                      //  Establece ruta de archivos estaticos
+app.use( express.static( path.join( __dirname, './src/public' ) ) );        //  Establece ruta de archivos estaticos
 app.set( 'view engine', 'pug' );                            //  Habilita pug
 app.set( 'views',
     path.join( __dirname, './src/views' )                   //  Establece ruta de las vistas

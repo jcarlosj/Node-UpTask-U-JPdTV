@@ -1,2 +1,1 @@
-const app = 'Hola App';
-console.log( app );
+import task from './modules/projects';          // Gracias a Babel podemos usar la sintaxis de ES6 para importar en Node
