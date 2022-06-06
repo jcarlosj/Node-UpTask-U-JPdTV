@@ -23,17 +23,22 @@ if( btnDeleteProject ) {
             if ( result.isConfirmed ) {
                 const url = `${ location.origin }/projects/${ project_url }`;
 
-                console.log( url );
+                /** Peticion del lado del cliente */
+                axios.delete( url, { params: { project_url } } )
+                    .then( response => {
+                        console.log( response );
 
-                Swal.fire(
-                    'Eliminado!',
-                    'Tú proyecto se ha eliminado.',
-                    'success'
-                );
-    
-                setTimeout( () => {
-                    window.location.href = '/';     // Redirecciona
-                }, 3000 );
+                        Swal.fire(
+                            'Eliminado!',
+                            response.data,
+                            'success'
+                        );
+            
+                        setTimeout( () => {
+                            window.location.href = '/';     // Redirecciona
+                        }, 3000 );
+
+                    } );
             }
         });
     });

@@ -1,3 +1,4 @@
+const Project = require('../models/Projects');
 const Projects = require( '../models/Projects' );
 
 exports.home = async ( request, response ) => {
@@ -143,4 +144,22 @@ exports.updateProject = async ( request, response ) => {
         console.log( 'Failed to update project!' );
 
     response.redirect( '/' );
+}
+
+exports.deleteProject = async ( request, response, next ) => {
+    // request: query o params (obtener datos enviados al backend)
+    console.log( 'query: ', request.query );        // query:   { project_url: 'creacion-de-portafolio-personal-wE7gF_ZKq' }
+    console.log( 'params: ', request.params );      // params:  { slug: 'creacion-de-portafolio-personal-wE7gF_ZKq' }
+
+    const 
+        { query: { project_url } } = request,     
+        data = await Project.destroy({ 
+            where: {
+                url: project_url
+            }
+         });
+
+    console.log( 'data' );
+
+    response.status( 200 ).send( 'Proyecto eliminado exitosamente!' );
 }

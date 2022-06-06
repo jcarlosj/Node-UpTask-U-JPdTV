@@ -20,6 +20,7 @@ module.exports = () => {
         body( 'project_name' ).not().isEmpty().trim().escape(),
         siteController.updateProject 
     );
+    router.delete( '/projects/:slug', siteController.deleteProject );
 
     return router;
 }
