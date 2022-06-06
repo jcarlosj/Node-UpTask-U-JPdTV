@@ -6,6 +6,14 @@ block main_content
         hgroup 
             h1=project.name
             h3 (#{ name_page })
+
+            form( class="agregar-tarea", action=`/project/${ project.url }`, method="post")
+                .campo
+                    label( for="task_name" ) Nombre tarea:
+                    input( type="text" id="nombre" name="task_name" placeholder="Nombre de la tarea" )
+                .campo.enviar
+                    input(type="submit" value='Agregar' class="boton")
+
         pre #{ vardump( project ) }
         .contenedor-acciones
             a(href=`/project/edit/${ project.id }` class="boton") Editar proyecto

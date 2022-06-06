@@ -5,10 +5,14 @@ const { body } = require( 'express-validator' );
 const router = express.Router();
 
 const siteController = require( '../controllers/siteController' );
+const taskController = require( '../controllers/taskController' );
 
 module.exports = () => {
+    /** Site routes */
     router.get( '/', siteController.home ); 
     router.get( '/about-us', siteController.us );
+
+    /** Project routes */
     router.get( '/project/new', siteController.formNewProject );
     router.post( '/project/new', 
         body( 'project_name' ).not().isEmpty().trim().escape(),
@@ -21,6 +25,9 @@ module.exports = () => {
         siteController.updateProject 
     );
     router.delete( '/projects/:slug', siteController.deleteProject );
+
+    /** Task routes */
+    router.post( '/project/:slug', taskController.addNewTask );
 
     return router;
 }

@@ -64,12 +64,17 @@ exports.bySlug = async ( request, response, next ) => {
         }
     });
 
+    const [ objProjects, objProject ] = await Promise.all([ promiseProjects, promiseProject ]);
+
+    if( ! objProjects ) {
+        return [];
+    }
+
     const
-        [ objProjects, objProject ] = await Promise.all([ promiseProjects, promiseProject ]),
         { dataValues: project } = objProject,
-        projects = objProjects.map( project => {
-            return project.dataValues
-        });
+    projects = objProjects.map( project => {
+        return project.dataValues
+    });
 
     console.log( '>>>', projects );
 
