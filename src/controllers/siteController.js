@@ -146,7 +146,7 @@ exports.updateProject = async ( request, response ) => {
     response.redirect( '/' );
 }
 
-exports.deleteProject = async ( request, response, next ) => {
+exports.deleteProject = async ( request, response ) => {
     // request: query o params (obtener datos enviados al backend)
     console.log( 'query: ', request.query );        // query:   { project_url: 'creacion-de-portafolio-personal-wE7gF_ZKq' }
     console.log( 'params: ', request.params );      // params:  { slug: 'creacion-de-portafolio-personal-wE7gF_ZKq' }
@@ -160,8 +160,11 @@ exports.deleteProject = async ( request, response, next ) => {
         });
 
     // * Valida si la accion se realizó
-    if( ! data )
-        return next();
+    if( ! data ) {
+        response.status( 500 ).send( 'No se pudo eliminar el proyecto!' );
+
+        return;
+    }
 
     response.status( 200 ).send( 'Proyecto eliminado exitosamente!' );
 }

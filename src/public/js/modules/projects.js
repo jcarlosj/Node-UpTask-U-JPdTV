@@ -40,11 +40,13 @@ if( btnDeleteProject ) {
 
                     })
                     .catch( err => {
+                        console.log( err );
+
                         Swal.fire({
                             title: 'Error',
-                            text: 'No se pudo eliminar el proyecto!',
+                            text: err.response.data,
                             icon: 'error',
-                            confirmButtonText: 'Cool'
+                            confirmButtonText: 'Ok'
                         })
                     });
             }
