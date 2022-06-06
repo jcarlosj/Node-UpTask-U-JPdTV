@@ -6,7 +6,9 @@ const
     db = require( './src/config/sequelize' ),
     { vardump } = require( './src/helpers' );
 
+/** Schemas: Sequelize */
 require( './src/models/Projects' );
+require( './src/models/Tasks' );
 
 // * Implementa conexion de MySQL usando Sequelize
 db.sync()
