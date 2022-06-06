@@ -27,7 +27,7 @@ module.exports = () => {
     router.delete( '/projects/:slug', siteController.deleteProject );
 
     /** Task routes */
-    router.post( '/project/:slug', taskController.addNewTask );
+    router.post( '/projects/:slug', taskController.addNewTask );
 
     return router;
 }

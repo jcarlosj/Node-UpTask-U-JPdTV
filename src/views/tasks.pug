@@ -7,7 +7,7 @@ block main_content
             h1=project.name
             h3 (#{ name_page })
 
-            form( class="agregar-tarea", action=`/project/${ project.url }`, method="post")
+            form( class="agregar-tarea", action=`/projects/${ project.url }`, method="post")
                 .campo
                     label( for="task_name" ) Nombre tarea:
                     input( type="text" id="nombre" name="task_name" placeholder="Nombre de la tarea" )
