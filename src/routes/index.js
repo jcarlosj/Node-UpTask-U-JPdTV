@@ -19,16 +19,16 @@ module.exports = () => {
         body( 'project_name' ).not().isEmpty().trim().escape(),
         projectController.addNewProject 
     );
-    router.get( '/projects/:slug', projectController.bySlug );
+    router.get( '/project/:slug', projectController.getProjectBySlug );
     router.get( '/project/edit/:projectId', projectController.formEditProject );
     router.post( '/project/save/:projectId',
         body( 'project_name' ).not().isEmpty().trim().escape(),
         projectController.updateProject 
     );
-    router.delete( '/projects/:slug', projectController.deleteProject );
+    router.delete( '/project/:slug', projectController.deleteProject );
 
     /** Task routes */
-    router.post( '/projects/:slug', taskController.addNewTask );
+    router.post( '/project/:slug', taskController.addNewTask );
 
     return router;
 }

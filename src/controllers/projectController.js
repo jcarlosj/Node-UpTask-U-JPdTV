@@ -40,7 +40,7 @@ exports.addNewProject = async ( request, response ) => {
     response.redirect( '/' );
 }
 
-exports.bySlug = async ( request, response, next ) => {
+exports.getProjectBySlug = async ( request, response, next ) => {
     const promiseProjects = Projects.findAll();
 
     const promiseProject = Projects.findOne({

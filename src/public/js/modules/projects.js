@@ -21,7 +21,7 @@ if( btnDeleteProject ) {
         })
         .then( ( result ) => {
             if ( result.isConfirmed ) {
-                const url = `${ location.origin }/projects/${ project_url }`;
+                const url = `${ location.origin }/project/${ project_url }`;
 
                 /** Peticion del lado del cliente */
                 axios.delete( url, { params: { project_url } } )

@@ -18,5 +18,5 @@ exports.addNewTask = async ( request, response, next ) => {
 
     if( ! result ) return next();
 
-    response.redirect( `/projects/${ slug }` );
+    response.redirect( `/project/${ slug }` );
 }
