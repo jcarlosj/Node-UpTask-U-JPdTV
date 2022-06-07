@@ -1,5 +1,6 @@
 const Project = require('../models/Projects');
 const Projects = require( '../models/Projects' );
+const Tasks = require( '../models/Tasks' );
 
 exports.formNewProject = async ( request, response ) => {
     const projects = await Projects.findAll();
@@ -41,6 +42,11 @@ exports.addNewProject = async ( request, response ) => {
 }
 
 exports.getProjectBySlug = async ( request, response, next ) => {
+
+    let
+        projects = [],
+        tasks = [];
+
     const promiseProjects = Projects.findAll();
 
     const promiseProject = Projects.findOne({
@@ -55,13 +61,28 @@ exports.getProjectBySlug = async ( request, response, next ) => {
         return [];
     }
 
-    const
-        { dataValues: project } = objProject,
+    const { dataValues: project } = objProject;
+    
+    /** Extrae solo la data de cada proyecto */
     projects = objProjects.map( project => {
         return project.dataValues
     });
 
-    console.log( '>>>', projects );
+    const promiseTasks = await Tasks.findAll({
+        where: {
+            ProjectId: project.id
+        }
+    });
+
+    const { dataValues: task } = promiseTasks;
+
+    /** Extrae solo la data de cada tarea de un proyecto especifico */
+    tasks = promiseTasks.map( task => {
+        return task.dataValues
+    });
+
+    console.log( 'Projects: ', projects );
+    console.log( 'Tasks: ', tasks );
 
     if( ! project )
         return next();
@@ -69,7 +90,8 @@ exports.getProjectBySlug = async ( request, response, next ) => {
     response.render( 'tasks', {
         name_page: 'Tareas del proyecto',
         project,
-        projects
+        projects,
+        tasks
     });
 }
 
