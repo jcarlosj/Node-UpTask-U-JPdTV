@@ -3,7 +3,8 @@ const path = require( 'path' );
 module.exports = {
     mode: 'development',
     entry: {
-        bundle: path.resolve( __dirname, './src/public/js/app.js' )
+        bundle: path.resolve( __dirname, './src/public/js/app.js' ),
+        svg: path.resolve( __dirname, './src/public/js/svg.js' )
     },
     output: {
         filename: '[name].js',
@@ -20,6 +21,16 @@ module.exports = {
                         presets: [ '@babel/preset-env' ]
                     }
                 }
+            },
+            {
+                test: /\.svg/,
+                use: {
+                    loader: "svg-url-loader",
+                    options: {
+                        // make loader to behave like url-loader, for all svg files
+                        encoding: "base64",
+                    },
+                },
             }
         ]
     }
