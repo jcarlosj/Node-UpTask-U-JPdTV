@@ -71,7 +71,12 @@ exports.getProjectBySlug = async ( request, response, next ) => {
     const promiseTasks = await Tasks.findAll({
         where: {
             ProjectId: project.id
-        }
+        },
+        include: [
+            {
+                model: Project
+            }
+        ]
     });
 
     const { dataValues: task } = promiseTasks;
