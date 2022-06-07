@@ -338,3 +338,37 @@ form input[type="submit"]{
     text-align: center;
     display: block;
 }
+
+.acciones {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.icon {
+    font-size: 1.6rem;
+    height: 0.8em;
+    width: 0.8em;
+}
+.icon.icon-complete {
+    background-color: black;
+    -webkit-mask: url( ../images//circle-check-regular.svg ) no-repeat 50% 50%;
+    mask: url( ../images//circle-check-regular.svg ) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+.icon.icon-incomplete {
+    background-color: gray;
+    -webkit-mask: url( ../images//circle-regular.svg ) no-repeat 50% 50%;
+    mask: url( ../images//circle-regular.svg ) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.icon.icon-trash {
+    background-color: black;
+    -webkit-mask: url( ../images//trash-can-regular.svg ) no-repeat 50% 50%;
+    mask: url( ../images//trash-can-regular.svg ) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
