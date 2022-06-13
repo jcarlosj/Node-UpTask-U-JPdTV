@@ -21,8 +21,27 @@ exports.addNewTask = async ( request, response, next ) => {
     response.redirect( `/project/${ slug }` );
 }
 
-exports.changeTaskStatus = ( request, response ) => {
-    const taskId = request.params.id;
+exports.changeTaskStatus = async ( request, response ) => {
+    console.log( 'Entro!' );
+    const id = request.params.id;
 
-    response.send( `Change status of task ${ taskId }` );
+    const task = await Tasks.findOne({
+        where: {
+            id
+        } 
+    });
+
+    let currentState = 0;
+
+    // Verifica si el estado es incompleto
+    if( task.state == currentState )   // Estado incompleto es 0, completo es 1
+        currentState = 1;
+
+    task.state = currentState;
+
+    const result = await task.save();      // Guarda cambios en la BD
+
+    if( ! result ) return next();
+
+    response.status( 200 ).send( `Task ${ id } status updated` );
 }
