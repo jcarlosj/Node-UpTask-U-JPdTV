@@ -24,7 +24,7 @@ block main_content
             if tasks.length > 0
                 ul
                     each task in tasks
-                        li.tarea 
+                        li.tarea( data-task-id=task.id)
                             p #{ task.name }
                             .acciones
                                 if task.state
