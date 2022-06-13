@@ -49,5 +49,13 @@ exports.changeTaskStatus = async ( request, response ) => {
 exports.deleteTask = async ( request, response ) => {
     const { params: { id } } = request;
 
-    response.send( `Delete task ${ id }` );
+    const result = await Tasks.destroy({
+        where: {
+            id
+        }
+    });
+
+    if( ! result ) return next();
+
+    response.status( 200 ).send( 'Tarea eliminada exitosamente!' );
 }

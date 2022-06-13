@@ -81,9 +81,14 @@ if ( tasks ) {
                     axios.delete( url, { taskId } )
                         .then( response => {
                             console.log( response );
+
+                            if( response.status === 200 ) {
+                                /** Eliminamos el nodo del DOM que posee la tarea listada que se desea eliminar */
+                                liElement.parentElement.removeChild( liElement );
+                            }
     
                             Swal.fire(
-                                'Eliminado!',
+                                'Eliminada!',
                                 response.data,
                                 'success'
                             );
