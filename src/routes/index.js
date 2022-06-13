@@ -30,6 +30,7 @@ module.exports = () => {
     /** Task routes */
     router.post( '/project/:slug', taskController.addNewTask );
     router.patch( '/task/:id', taskController.changeTaskStatus );
+    router.delete( '/task/:id', taskController.deleteTask );
 
     return router;
 }

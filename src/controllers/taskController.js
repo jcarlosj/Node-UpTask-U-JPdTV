@@ -45,3 +45,9 @@ exports.changeTaskStatus = async ( request, response ) => {
 
     response.status( 200 ).send( `Task ${ id } status updated` );
 }
+
+exports.deleteTask = async ( request, response ) => {
+    const { params: { id } } = request;
+
+    response.send( `Delete task ${ id }` );
+}
