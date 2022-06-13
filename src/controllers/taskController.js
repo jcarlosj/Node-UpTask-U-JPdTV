@@ -20,3 +20,9 @@ exports.addNewTask = async ( request, response, next ) => {
 
     response.redirect( `/project/${ slug }` );
 }
+
+exports.changeTaskStatus = ( request, response ) => {
+    const taskId = request.params.id;
+
+    response.send( `Change status of task ${ taskId }` );
+}

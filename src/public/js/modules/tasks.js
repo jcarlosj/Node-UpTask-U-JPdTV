@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const tasks = document.querySelector( '.listado-pendientes' );
 
 if ( tasks ) {
@@ -11,7 +13,13 @@ if ( tasks ) {
                 liElement = iconComplete.parentElement.parentElement,
                 taskId = liElement.dataset.taskId;
             
-            console.log( 'taskId:', taskId );
+            const url = `${ location.origin }/task/${ taskId }`;
+            // console.log( url );
+
+            axios.patch( url, { id: taskId } )
+                .then( response => {
+                    console.log( response );        // Respuesta del controlador
+                });
         }
     } );
 }
