@@ -5,7 +5,13 @@ html(lang="en")
     body.login
         .contenedor-formulario
             h1 Crea tu cuenta en UpTask
-            form#formulario.caja.caja-login( method="post" action="/register-user" )
+
+            if errors
+                each error in errors
+                    p.alerta #{ error.message }
+
+            form#formulario.caja.caja-login( method="post" action="/create-account" )
+
                 .campo
                     label( for="email" ) Correo:
                     input( type="email" name="email" placeholder="evasofia@correo.co" )

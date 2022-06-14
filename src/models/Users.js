@@ -14,11 +14,28 @@ const User = db.define( 'Users', {
     },
     email: {
         type: DataTypes.STRING( 60 ),
-        allowNull: false    // NOT-NULL
+        allowNull: false,    // NOT-NULL
+        unique: {
+            args: true,
+            msg: 'User already registered'
+        },
+        validate: {
+            notEmpty: {
+                msg: 'Email is required'
+            },
+            isEmail: {
+                msg: 'Enter a valid email'
+            }
+        }
     },
     password: {
         type: DataTypes.STRING( 60 ),
-        allowNull: false    // NOT-NULL
+        allowNull: false,    // NOT-NULL
+        validate: {
+            notEmpty: {
+                msg: 'Password is required'
+            }
+        }
     }
 }, {
 

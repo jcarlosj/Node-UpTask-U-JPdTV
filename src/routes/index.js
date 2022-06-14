@@ -35,7 +35,7 @@ module.exports = () => {
 
     /** User routes */
     router.get( '/create-account', userController.formCreateAccount );
-    router.post( '/register-user', userController.registerAccount );
+    router.post( '/create-account', userController.registerAccount );
 
     return router;
 }
