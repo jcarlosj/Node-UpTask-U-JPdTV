@@ -6,13 +6,20 @@ exports.formCreateAccount = ( request, response ) => {
     });
 }
 
-exports.registerAccount = ( request, response ) => {
+exports.registerAccount = async ( request, response ) => {
     const { body: { email, password } } = request;
 
     // Inserta nuevo usuario
-    Users.create({ email, password })
-        .then( user => {
-            console.log( user.id );
-            response.redirect( '/login' );
-        });
+    const user = await Users.create({ email, password });
+
+    if( user ) {
+        console.log( user.id );
+        response.redirect( '/login' );
+    }
+
+    // Users.create({ email, password })
+    //     .then( user => {
+    //         console.log( user.id );
+    //         response.redirect( '/login' );
+    //     });
 }
