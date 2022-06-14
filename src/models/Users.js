@@ -1,4 +1,5 @@
 const { DataTypes } = require( 'sequelize' );
+const bcrypt = require( 'bcrypt' );
 
 const db = require( '../config/sequelize' );
 
@@ -18,6 +19,20 @@ const User = db.define( 'Users', {
     password: {
         type: DataTypes.STRING( 60 ),
         allowNull: false    // NOT-NULL
+    }
+}, {
+
+    hooks: {
+        // Other model options go here
+        beforeCreate: ( record, options ) => {
+            const
+                { dataValues } = record,
+                { password } = dataValues;
+
+            dataValues.password = bcrypt.hashSync( password, bcrypt.genSaltSync( 10 ) );
+
+            // console.log( dataValues );
+        }
     }
 });
 
