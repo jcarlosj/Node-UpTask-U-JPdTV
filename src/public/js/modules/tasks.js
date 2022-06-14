@@ -1,6 +1,8 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
 
+import { updateProgressBar } from '../functions/updateProgressBar';
+
 const tasks = document.querySelector( '.listado-pendientes' );
 
 if ( tasks ) {
@@ -25,7 +27,10 @@ if ( tasks ) {
                     if( response.status === 200 ) {
                         iconInComplete.classList.remove( 'icon-incomplete' );
                         iconInComplete.classList.add( 'icon-complete' );
+
+                        updateProgressBar();        // Actualiza barra de progreso al completar una tarea
                     }
+
                 });
         }
 
@@ -47,6 +52,8 @@ if ( tasks ) {
                     if( response.status === 200 ) {
                         iconComplete.classList.remove( 'icon-complete' );
                         iconComplete.classList.add( 'icon-incomplete' );
+
+                        updateProgressBar();        // Actualiza barra de progreso al descompletar una tarea
                     }
                 });
         }
@@ -92,6 +99,8 @@ if ( tasks ) {
                                 response.data,
                                 'success'
                             );
+
+                            updateProgressBar();        // Actualiza barra de progreso al eliminar una tarea
     
                         })
                         .catch( err => {
