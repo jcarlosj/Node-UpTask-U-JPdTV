@@ -14,11 +14,16 @@ block main_content
                 .campo.enviar
                     input(type="submit" value='Agregar' class="boton")
 
-        b Proyecto actual
-        pre #{ vardump( project ) }
+        //- b Proyecto actual
+        //- pre #{ vardump( project ) }
 
-        b Tareas del proyecto actual 
-        pre #{ vardump( tasks ) }
+        //- b Tareas del proyecto actual 
+        //- pre #{ vardump( tasks ) }
+
+        .avance
+            h2 Avance del proyecto
+            #barra-avance.barra-avance
+                #porcentaje.porcentaje
 
         .listado-pendientes
             if tasks.length > 0

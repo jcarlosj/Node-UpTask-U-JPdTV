@@ -272,6 +272,7 @@ body.index {
     max-width: 800px;
     width: 90%;
     margin: 0 auto;
+    overflow: hidden;
 }
 .porcentaje {
     width: 0%;
