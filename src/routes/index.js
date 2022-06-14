@@ -34,7 +34,8 @@ module.exports = () => {
     router.delete( '/task/:id', taskController.deleteTask );
 
     /** User routes */
-    router.get( '/create-account', userController.formCreateAccount )
+    router.get( '/create-account', userController.formCreateAccount );
+    router.post( '/register-user', userController.registerAccount );
 
     return router;
 }
