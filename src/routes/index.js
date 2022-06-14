@@ -7,6 +7,7 @@ const router = express.Router();
 const siteController = require( '../controllers/siteController' );
 const projectController = require( '../controllers/projectController' );
 const taskController = require( '../controllers/taskController' );
+const userController = require( '../controllers/userController' );
 
 module.exports = () => {
     /** Site routes */
@@ -31,6 +32,9 @@ module.exports = () => {
     router.post( '/project/:slug', taskController.addNewTask );
     router.patch( '/task/:id', taskController.changeTaskStatus );
     router.delete( '/task/:id', taskController.deleteTask );
+
+    /** User routes */
+    router.get( '/create-account', userController.formCreateAccount )
 
     return router;
 }
