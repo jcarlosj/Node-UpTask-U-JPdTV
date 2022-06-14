@@ -10,13 +10,13 @@ html(lang="en")
 
                 .campo
                     label( for="email" ) Correo:
-                    input( type="text" name="email" placeholder="evasofia@correo.co" )
+                    input( type="text" name="email" placeholder="evasofia@correo.co" value=`${ values && values.email ? values.email : '' }` )
                 if errors && errors.email && errors.email.length > 0
                     .campo-error
                         .alerta-error #{ errors.email[0]['message'] }
                 .campo
                     label( for="password" ) Contraseña:
-                    input( type="password" name="password" placeholder="*********" )
+                    input( type="password" name="password" placeholder="*********" value=`${ values && values.password ? values.password : '' }` )
                 if errors && errors.password && errors.password.length > 0
                     .campo-error
                         .alerta-error #{ errors.password[0]['message'] }

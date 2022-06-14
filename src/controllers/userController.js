@@ -27,14 +27,14 @@ exports.registerAccount = async ( request, response ) => {
 
         // * Itera los errores producidos por las validaciones y restricciones del Modelo en Sequelize
         for( const error of err.errors ) {
-            // * Compila todos los errores relacionados al email
+            // * Filtra o compila todos los errores relacionados al email
             if( error.path === 'email' )
                 errors.email.push({ 
                     path: error.path,
                     validatorKey: error.validatorKey,
                     message: error.message
                 });
-            // * Compila todos los errores relacionados al password
+            // * Filtra o compila todos los errores relacionados al password
             if( error.path === 'password' )
                 errors.password.push({ 
                     path: error.path,
@@ -47,7 +47,11 @@ exports.registerAccount = async ( request, response ) => {
 
         response.render( 'create-account', {
             name_page: 'Crear cuenta en UpTask',
-            errors
+            errors,         // Pasa errores filtrados a la vista
+            values: {       // Pasa los valores ingresados para hacer persistente los valore ingresados en los campos del formulario
+                email,
+                password
+            }
         });
     }
 
