@@ -9,6 +9,7 @@ const
 /** Schemas: Sequelize */
 require( './src/models/Projects' );
 require( './src/models/Tasks' );
+require( './src/models/Users' );
 
 // * Implementa conexion de MySQL usando Sequelize
 db.sync()
