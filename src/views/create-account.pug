@@ -2,5 +2,19 @@ doctype html
 html(lang="en")
     head
         include partials/head
-    body
-        h1 #{ name_page }
+    body.login
+        .contenedor-formulario
+            h1 Crea tu cuenta en UpTask
+            form#formulario.caja.caja-login( method="post" action="/register-user" )
+                .campo
+                    label( for="email" ) Correo:
+                    input( type="email" name="email" placeholder="evasofia@correo.co" )
+                .campo
+                    label( for="password" ) Contraseña:
+                    input( type="password" name="password" placeholder="*********" )
+                .campo.enviar
+                    input.boton(type="submit" value="Crear cuenta")
+                .campo 
+                    a( href="/login" ) Volver a iniciar sesión
+
+        script( src="/dist/bundle.js" )
