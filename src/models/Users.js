@@ -53,8 +53,13 @@ const User = db.define( 'Users', {
     }
 });
 
+// * Personalizar modelo
+User.prototype.verifyPassword = ( password ) => {
+    return bcrypt.compareSync( password, this.password );
+}
+
 // ? Relación (1-N): Cada Usuario tiene muchas Poryectos (Forma 1), equivalente a la Forma 2
-User.hasMany( Projects );
+// User.hasMany( Projects );
 // ? Relación (N-1): Cada Proyecto pertenece a un Usuario (Forma 2), equivalente a la Forma 1
 // Projects.belongsTo( User );
 
