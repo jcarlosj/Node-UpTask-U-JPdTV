@@ -4,24 +4,18 @@ html(lang="en")
         include partials/head
     body.login
         .contenedor-formulario
-            h1 Crea tu cuenta en UpTask
+            h1 Inicia sesión en UpTask
 
-            form#formulario.caja.caja-login( method="post" action="/create-account" )
+            form#formulario.caja.caja-login( method="post" action="/login" )
 
                 .campo
                     label( for="email" ) Correo:
                     input( type="text" name="email" placeholder="evasofia@correo.co" value=`${ values && values.email ? values.email : '' }` )
-                if errors && errors.email && errors.email.length > 0
-                    .campo-error
-                        .alerta-error #{ errors.email[0]['message'] }
                 .campo
                     label( for="password" ) Contraseña:
                     input( type="password" name="password" placeholder="*********" value=`${ values && values.password ? values.password : '' }` )
-                if errors && errors.password && errors.password.length > 0
-                    .campo-error
-                        .alerta-error #{ errors.password[0]['message'] }
 
                 .campo.enviar
-                    input.boton(type="submit" value="Crear cuenta")
+                    input.boton(type="submit" value="Iniciar sesión")
                 .campo 
-                    a( href="/login" ) Volver a iniciar sesión
+                    a( href="/create-account" ) Crear cuenta

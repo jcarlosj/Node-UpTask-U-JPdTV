@@ -6,6 +6,12 @@ exports.formCreateAccount = ( request, response ) => {
     });
 }
 
+exports.formLogin = ( request, response ) => {
+    response.render( 'login', {
+        name_page: 'Iniciar sesión en UpTask'
+    });
+}
+
 exports.registerAccount = async ( request, response ) => {
     const { body: { email, password } } = request;
 

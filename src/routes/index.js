@@ -33,9 +33,10 @@ module.exports = () => {
     router.patch( '/task/:id', taskController.changeTaskStatus );
     router.delete( '/task/:id', taskController.deleteTask );
 
-    /** User routes */
+    /** Auth routes */
     router.get( '/create-account', userController.formCreateAccount );
     router.post( '/create-account', userController.registerAccount );
+    router.get( '/login', userController.formLogin );
 
     return router;
 }
