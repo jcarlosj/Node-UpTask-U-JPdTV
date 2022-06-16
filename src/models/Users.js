@@ -54,8 +54,8 @@ const User = db.define( 'Users', {
 });
 
 // * Personalizar modelo
-User.prototype.verifyPassword = ( password ) => {
-    return bcrypt.compareSync( password, this.password );
+User.prototype.verifyPassword = function ( password ) {
+    return bcrypt.compareSync( password, this.password );   // null / true
 }
 
 // ? Relación (1-N): Cada Usuario tiene muchas Poryectos (Forma 1), equivalente a la Forma 2

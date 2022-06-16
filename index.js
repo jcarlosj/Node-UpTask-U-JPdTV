@@ -27,7 +27,7 @@ app.set( 'views',
     path.join( __dirname, './src/views' )                   //  Establece ruta de las vistas
 );
 
-// Middleware de sesión: Configurada
+// Middleware de sesión: Configurada (Nos permite navegar sin tener que volvernos a autenticar)
 app.use( session({
     secret: 'kisDtlRk94lKw12',  // ! Es la cadena que se utiliza para firmar la cookie de ID de sesión.
     resave: false,              // ! Obliga a que la sesión se guarde de nuevo en el almacén de sesiones, incluso si la sesión nunca se modificó durante la solicitud. El valor predeterminado es verdadero, pero el uso del valor predeterminado ha quedado obsoleto, ya que el valor predeterminado cambiará en el futuro.

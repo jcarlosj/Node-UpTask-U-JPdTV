@@ -8,6 +8,7 @@ const siteController = require( '../controllers/siteController' );
 const projectController = require( '../controllers/projectController' );
 const taskController = require( '../controllers/taskController' );
 const userController = require( '../controllers/userController' );
+const authController = require( '../controllers/authController' );
 
 module.exports = () => {
     /** Site routes */
@@ -37,6 +38,7 @@ module.exports = () => {
     router.get( '/create-account', userController.formCreateAccount );
     router.post( '/create-account', userController.registerAccount );
     router.get( '/login', userController.formLogin );
+    router.post( '/login', authController.authenticateUser );
 
     return router;
 }

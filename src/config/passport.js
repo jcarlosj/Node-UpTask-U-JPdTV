@@ -19,7 +19,10 @@ passport.use(
                     }
                 });    
 
-                if( ! user.verifyPassword( user.password ) ) {
+                console.log( user );
+
+                if( ! user?.verifyPassword( password ) ) {
+                    console.log( 'Incorrect password' );
                     return done(
                         null,       // ! error
                         false,      // ! user   
@@ -34,7 +37,7 @@ passport.use(
             catch( error ) {
                 console.log( 'Email does not exist' );
 
-                return done( null, false, {
+                return done( error, false, {
                     message: 'Email does not exist'
                 });
             }
